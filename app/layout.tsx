@@ -1,22 +1,23 @@
-import React from "react";
-import type { Metadata } from "next";
-import { Mona_Sans } from "next/font/google";
-import "./globals.css";
+import type { Metadata } from "next"
+import { Mona_Sans } from "next/font/google"
+import React from "react"
+import "./globals.css"
+import { Toaster } from "sonner"
 
 const monaSans = Mona_Sans({
   variable: "--font-mona-sans",
   subsets: ["latin"],
-});
+})
 
 export const metadata: Metadata = {
   title: "AI Mock Interview Platform",
   description: "A platform powered by AI to help you prepare effectively for mock interviews.",
-};
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <html lang="en" className="dark">
@@ -24,7 +25,8 @@ export default function RootLayout({
         className={`${monaSans.className} antialiased pattern`}
       >
         {children}
+        <Toaster />
       </body>
     </html>
-  );
+  )
 }
