@@ -2,53 +2,51 @@
 
 ## About the Project
 
-This is a project for an AI Mock Interview Platform developed using:
+A **Next.js**-powered AI mock-interview platform that combines rapid front-end development with intelligent, AI-driven back-ends:
 
-- **Next.js**: A React framework for building fast and scalable web applications.
-- **Tailwind CSS**: A utility-first CSS framework for styling.
-- **Vapi**: A lightweight API framework.
-- **Firebase**: A platform for backend services like authentication, database, and hosting.
-- **shadcn/ui**: A component library for building accessible and customizable UI components.
-- **Zod**: A TypeScript-first schema declaration and validation library.
-- **Gemini AI**: An advanced AI tool for enhancing user interactions and system intelligence.
-- **TypeScript**: A typed superset of JavaScript that enhances error detection and developer productivity.
-- **ESLint**: A tool for identifying and fixing code issues, ensuring quality and consistency.
-- **Turbopack**: A fast, modern bundler optimized for efficient web development workflows.
-- **And more**: Additional tools and technologies to enhance functionality and performance.
-
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+- ![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat&logo=nextdotjs&logoColor=white) React framework with built-in SSR, static-export, file-based routing, and image optimization.  
+- ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white) Utility-first CSS for rapid UI prototyping without leaving your markup.  
+- ![Vapi](https://img.shields.io/badge/Vapi-4FC08D?style=flat&logo=vercel&logoColor=white) Lightweight, type-safe API framework for defining endpoints and request/response schemas with minimal boilerplate.  
+- ![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=flat&logo=firebase&logoColor=black) Managed backend services (Auth, Firestore, Hosting, Functions) for quick setup and horizontal scalability.  
+- ![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-6366F1?style=flat&logo=shadcn&logoColor=white) Accessible, customizable React components built on Radix and Tailwind—perfect for design consistency.  
+- ![Zod](https://img.shields.io/badge/Zod-000000?style=flat&logo=zod&logoColor=white) TypeScript-first schema validation to ensure data integrity at compile- and runtime.  
+- ![Gemini AI](https://img.shields.io/badge/Gemini_AI-673AB7?style=flat&logo=google&logoColor=white) Advanced LLM integration for context-aware interview simulations and real-time feedback.  
+- ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white) Statically-typed JavaScript superset for safer code and better editor support.  
+- ![ESLint](https://img.shields.io/badge/ESLint-4B32C3?style=flat&logo=eslint&logoColor=white) Configurable linter enforcing code standards and catching potential errors early.  
+- ![Turbopack](https://img.shields.io/badge/Turbopack-FFFFFF?style=flat&logo=webpack&logoColor=black) Next-generation bundler optimized for lightning-fast HMR and incremental builds.  
+- **…and more**: State management, test runners, CI/CD tools, performance monitoring, and other enhancements.
 
 ## Getting Started
 
-First, run the development server:
+1. Install dependencies and start development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+   ```bash
+   npm install
+   npm run dev
+   # or
+   yarn
+   yarn dev
+   # or
+   pnpm
+   pnpm dev
+   ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Open [http://localhost:3000](http://localhost:3000) to see your app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Edit `app/page.tsx`—changes auto-reload in the browser.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This setup also uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to optimize loading of the **Geist** font from Vercel.
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Next.js Documentation**: https://nextjs.org/docs  
+- **Interactive Tutorial**: https://nextjs.org/learn  
+- **GitHub Repo**: https://github.com/vercel/next.js
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Deploy with zero-config on Vercel:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[![Deploy on Vercel](https://img.shields.io/badge/Deploy%20on-Vercel-000000?style=flat&logo=vercel&logoColor=white)](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
+
+See [Next.js deployment docs](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
