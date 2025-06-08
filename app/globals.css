@@ -10,12 +10,12 @@
   --color-destructive-100: #f75353;
   --color-destructive-200: #c44141;
 
-  --color-primary-100: #dddfff;
-  --color-primary-200: #cac5fe;
+  --color-primary-100: #E7F6F2;
+  --color-primary-200: #FFC045;
 
-  --color-light-100: #d6e0ff;
+  --color-light-100: #E7F6F2;
   --color-light-400: #6870a6;
-  --color-light-600: #4f557d;
+  --color-light-600: #065471;
   --color-light-800: #24273a;
 
   --color-dark-100: #020408;
@@ -307,7 +307,7 @@
 }
 
 @utility blue-gradient-dark {
-  @apply bg-gradient-to-b from-[#171532] to-[#08090D];
+  @apply bg-gradient-to-b from-[#0C2233] to-[#065471];
 }
 
 @utility blue-gradient {
