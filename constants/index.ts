@@ -1,5 +1,5 @@
-import { CreateAssistantDTO } from "@vapi-ai/web/dist/api";
-import { z } from "zod";
+import { CreateAssistantDTO } from "@vapi-ai/web/dist/api"
+import { z } from "zod"
 
 export const mappings = {
   "react.js": "react",
@@ -95,7 +95,7 @@ export const mappings = {
   netlify: "netlify",
   vercel: "vercel",
   "aws amplify": "amplify",
-};
+}
 
 export const interviewer: CreateAssistantDTO = {
   name: "Interviewer",
@@ -121,7 +121,8 @@ export const interviewer: CreateAssistantDTO = {
     messages: [
       {
         role: "system",
-        content: `You are a professional job interviewer conducting a real-time voice interview with a candidate. Your goal is to assess their qualifications, motivation, and fit for the role.
+        content:
+          `You are a professional job interviewer conducting a real-time voice interview with a candidate. Your goal is to assess their qualifications, motivation, and fit for the role.
 
 Interview Guidelines:
 Follow the structured question flow:
@@ -153,7 +154,7 @@ End the conversation on a polite and positive note.
       },
     ],
   },
-};
+}
 
 export const feedbackSchema = z.object({
   totalScore: z.number(),
@@ -187,7 +188,7 @@ export const feedbackSchema = z.object({
   strengths: z.array(z.string()),
   areasForImprovement: z.array(z.string()),
   finalAssessment: z.string(),
-});
+})
 
 export const interviewCovers = [
   "/adobe.png",
@@ -202,7 +203,7 @@ export const interviewCovers = [
   "/telegram.png",
   "/tiktok.png",
   "/yahoo.png",
-];
+]
 
 export const dummyInterviews: Interview[] = [
   {
@@ -221,10 +222,10 @@ export const dummyInterviews: Interview[] = [
     userId: "user1",
     role: "Full Stack Developer",
     type: "Mixed",
-    techstack: ["Node.js", "Express", "MongoDB", "React"],
+    techstack: ["Node.js", "MongoDB", "git", "React"],
     level: "Senior",
     questions: ["What is Node.js?"],
     finalized: false,
     createdAt: "2024-03-14T15:30:00Z",
   },
-];
+]
