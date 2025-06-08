@@ -1,4 +1,4 @@
-# AI Mock Interview Platform
+# AI InterviewPrep - an AI Interview Preparation Platform
 
 ## About the Project
 
