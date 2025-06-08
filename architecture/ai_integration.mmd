@@ -1,0 +1,20 @@
+sequenceDiagram
+    participant User
+    participant VAPI as VAPI Assistant
+    participant API as API Endpoint
+    participant Gemini
+    participant Firestore
+    participant UI
+
+    User->>VAPI: 1. Initiate call
+    VAPI->>User: 2. Ask pre-defined questions
+    loop 3. Collect responses
+        User-->>VAPI: Answer question
+    end
+    VAPI->>API: 4. Send all responses
+    API->>Gemini: 5. Feed info
+    Gemini-->>API: Return AI response
+    API->>Firestore: Store response
+    UI->>API: 6. Fetch entries from Firestore
+    API-->>UI: Return stored entries
+    UI->>UI: Display on screen

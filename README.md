@@ -15,6 +15,9 @@ A **Next.js**-powered AI mock-interview platform that combines rapid front-end d
 - ![ESLint](https://img.shields.io/badge/ESLint-4B32C3?style=flat&logo=eslint&logoColor=white) Configurable linter enforcing code standards and catching potential errors early.  
 - ![Turbopack](https://img.shields.io/badge/Turbopack-FFFFFF?style=flat&logo=webpack&logoColor=black) Next-generation bundler optimized for lightning-fast HMR and incremental builds.  
 - ![Mermaid](https://img.shields.io/badge/Mermaid-FF3670?style=flat&logo=mermaid&logoColor=white) Text-based diagramming engine for generating flowcharts, sequence diagrams, class diagrams, and more directly from simple markup.
+- ![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat&logo=vercel&logoColor=white) Frontend cloud platform for deploying, previewing, and scaling modern web applications with seamless Git integration and edge performance.
+- ![Vercel AI SDK](https://img.shields.io/badge/Vercel%20AI%20SDK-FF0080?style=flat&logo=vercel&logoColor=white) Lightweight TypeScript SDK from Vercel for building conversational AI apps using streaming LLM outputs, function calling, and tool integration.
+
 - **…and more**: State management, test runners, CI/CD tools, performance monitoring, and other enhancements.
 
 ## Firebase Authentication
@@ -42,7 +45,33 @@ sequenceDiagram
     Firestore-->>AdminSDK: Return user records
     AdminSDK-->>ClientSDK: Return user data
 ```
+## Gemini AI integration
 
+### LLM Model used:
+**gemini-2.0-flash**: Gemini 2.0 Flash delivers next-gen features and improved capabilities, including superior speed, built-in tool use, multimodal generation, and a 1M token context window.
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant VAPI as VAPI Assistant
+    participant API as API Endpoint
+    participant Gemini
+    participant Firestore
+    participant UI
+
+    User->>VAPI: 1. Initiate call
+    VAPI->>User: 2. Ask pre-defined questions
+    loop 3. Collect responses
+        User-->>VAPI: Answer question
+    end
+    VAPI->>API: 4. Send all responses
+    API->>Gemini: 5. Feed info
+    Gemini-->>API: Return AI response
+    API->>Firestore: Store response
+    UI->>API: 6. Fetch entries from Firestore
+    API-->>UI: Return stored entries
+    UI->>UI: Display on screen
+```
 
 ## Getting Started
 
