@@ -21,14 +21,14 @@ const Page = () => {
         <Image src="/robot.png" alt="robot" width={400} height={400} className="max-sm:hidden" />
       </section>
       <section className="flex flex-col gap-6 mt-8">
-        <h2 className="px-16 max-sm:px-4">Your Interviews</h2>
+        <h2>Your Interviews</h2>
         <div className="interviews-section">
           {dummyInterviews.map((interview) => <InterviewCard {...interview} key={interview.id} />)}
           {/* <p>You haven&apos;t taken any interviews yet. Practice and get feedback on real interview questions.</p> */}
         </div>
       </section>
       <section className="flex flex-col gap-6 mt-8">
-        <h2 className="px-16 max-sm:px-4">Take an Interview</h2>
+        <h2>Take an Interview</h2>
         <div className="interviews-section">
           {dummyInterviews.map((interview) => <InterviewCard {...interview} key={interview.id} />)}
         </div>
