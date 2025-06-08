@@ -1,7 +1,10 @@
 "use client"
+import { auth } from "@/app/firebase/client"
 import { Button } from "@/components/ui/button"
 import { Form } from "@/components/ui/form"
+import { signIn, signUp } from "@/lib/actions/auth.action"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
@@ -36,25 +39,55 @@ const AuthForm = ({ type }: { type: FormType }) => {
   })
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     try {
       if (type === "sign-in") {
+        const { email, password } = values
+        const userCredentials = await signInWithEmailAndPassword(auth, email, password)
+        const idToken = await userCredentials.user.getIdToken()
+        if (!idToken) {
+          toast.error("Failed to sign in. Please try again.")
+          return
+        }
+        await signIn({
+          email,
+          idToken,
+        })
         toast.success("Signed in successfully")
         router.push("/")
-        // sign_in(values.email, values.password)
       } else {
+        const { name, email, password } = values
+        const userCredentials = await createUserWithEmailAndPassword(auth, email, password)
+        const result = await signUp({
+          uid: userCredentials.user.uid,
+          name: name!,
+          email,
+          password,
+        })
+        if (!result?.success) {
+          toast.error(result?.message || "Failed to create an account.")
+          return
+        }
         toast.success("Account created successfully. Please sign in.")
         router.push("/sign-in")
-        // sign_up(values.name, values.email, values.password)
       }
-    } catch (error) {
-      console.log(error)
+    } catch (error: any) {
+      // console.log(error)
+      if (error.code === "auth/invalid-credential") {
+        toast.error("Incorrect email or password. Please try again.")
+        return
+      }
+      if (error.code === "auth/email-already-in-use") {
+        toast.error("This email already in use.")
+        return
+      }
       toast.error(`Something went wrong.: ${error}`)
     }
   }
 
   return (
+    // <div className="min-h-screen flex items-center justify-center">
     <div className="card-border lg:min-w-[566px]">
       <div className="flex flex-col gap-6 card py-14 px-10">
         <div className="flex flex-row gap-2 justify-center">
@@ -90,6 +123,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
         </p>
       </div>
     </div>
+    // </div>
   )
 }
 
