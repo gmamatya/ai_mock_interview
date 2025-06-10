@@ -85,3 +85,9 @@ export async function isAuthenticated() {
   const user = await getCurrentUser()
   return !!user // Return true if user exists, false otherwise
 }
+
+export async function signOut() {
+  const cookieStore = await cookies()
+
+  cookieStore.delete("session")
+}

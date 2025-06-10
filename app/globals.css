@@ -307,6 +307,9 @@
       @apply text-sm font-semibold capitalize;
     }
   }
+  .sign-out {
+    @apply text-sm ml-4 font-semibold bg-transparent border-none shadow-none outline-none cursor-pointer text-[#FFC045] hover:text-[#e6a62e] transition-colors p-0;
+  }
 }
 
 @utility dark-gradient {
