@@ -50,3 +50,15 @@ export async function getLatestInterviews(params: GetLatestInterviewsParams): Pr
     return null
   }
 }
+
+export async function getInterviewById(id: string): Promise<Interview | null> {
+  try {
+    const interviewDoc = await db.collection("interviews").doc(id).get()
+    if (!interviewDoc.exists) return null
+
+    return interviewDoc.data() as Interview | null
+  } catch (error: any) {
+    console.error("Error fetching interviews:", error)
+    return null
+  }
+}

@@ -6,7 +6,7 @@ import React from "react"
 import DisplayTechIcons from "./DisplayTechIcons"
 import { Button } from "./ui/button"
 
-const InterviewCard = ({ interviewId, userId, role, type, techstack, createdAt }: InterviewCardProps) => {
+const InterviewCard = ({ id, userId, role, type, techstack, createdAt }: InterviewCardProps) => {
   const feedback = null as feedback | null
   const normalizedType = /mix/gi.test(type) ? "Mixed" : type
   const formattedDate = dayjs(feedback?.createdAt || createdAt || Date.now()).format("MMM D, YYYY")
@@ -40,11 +40,11 @@ const InterviewCard = ({ interviewId, userId, role, type, techstack, createdAt }
         </p>
         <div className="flex flex-row justify-between">
           <DisplayTechIcons techStack={techstack} />
-          <Button className="btn-primary">
-            <Link href={feedback ? `/feedback/${interviewId}/feedback` : `/interview/${interviewId}`}>
+          <Link href={feedback ? `/feedback/${id}/feedback` : `/interview/${id}`}>
+            <Button className="btn-primary">
               {feedback ? "View Feedback" : "Take Interview"}
-            </Link>
-          </Button>
+            </Button>
+          </Link>
         </div>
       </div>
     </div>
