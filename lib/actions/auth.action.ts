@@ -6,7 +6,7 @@ import { cookies } from "next/headers"
 const ONE_WEEK = 60 * 60 * 24 * 7 // seconds
 
 export async function signUp(params: SignUpParams) {
-  const { uid, name, email, password } = params
+  const { uid, name, email } = params
   try {
     const userRecord = await db.collection("users").doc(uid).get()
     if (userRecord.exists) {
@@ -16,8 +16,6 @@ export async function signUp(params: SignUpParams) {
       name,
       email,
     })
-    // Simulate a sign-up process
-    console.log(`Signing up user: ${name} (${email}) with UID: ${uid}`)
     return { success: true, message: "User signed up successfully. Please sign in." }
   } catch (error: any) {
     console.error("Error creating user:", error)
