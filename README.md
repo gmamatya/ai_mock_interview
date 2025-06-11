@@ -75,6 +75,17 @@ sequenceDiagram
     UI->>UI: Display on screen
 ```
 
+### AI Models used:
+Voice Assistant:
+- gpt-4o cluster by OpenAI
+- claude-sonnet 3.5 by Anthropic
+
+Transcriber (Speech to Text):
+- nova-2 by deepgram
+
+Interview Generation and Feedback
+- gemini-2.0-flash-001
+
 ## Getting Started
 
 1. Install dependencies and start development server:

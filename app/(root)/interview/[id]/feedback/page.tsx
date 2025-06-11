@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { getCurrentUser } from "@/lib/actions/auth.action"
 import { getFeedbackByInterviewId, getInterviewById } from "@/lib/actions/general.action"
+import { getRandomInterviewCover } from "@/lib/utils"
 import dayjs from "dayjs"
 import Image from "next/image"
 import Link from "next/link"
@@ -18,62 +19,67 @@ const Page = async ({ params: RouteParams }: RouteParams) => {
   const feedback = await getFeedbackByInterviewId({ userId: user?.id || "", interviewId: id })
   return (
     <section className="section-feedback">
-      <div className="flex flex-row justify-center">
-        <h1 className="text-4xl font-semibold">
-          Feedback on the Interview - <span className="capitalize">{interview.role}</span> Interview
-        </h1>
-      </div>
-
-      <div className="flex flex-row justify-center ">
-        <div className="flex flex-row gap-5">
-          {/* Overall Impression */}
-          <div className="flex flex-row gap-2 items-center">
-            <Image src="/star.svg" width={22} height={22} alt="star" />
-            <p>
-              Overall Impression:{" "}
-              <span className="text-primary-200 font-bold">
-                {feedback?.totalScore}
-              </span>
-              /100
-              {feedback?.totalScore !== undefined && (
-                <span
-                  className={`
-                    ml-3 px-2 py-1 rounded text-xs font-semibold
-                    ${
-                    feedback.totalScore >= 90
-                      ? "bg-green-500 text-white"
-                      : feedback.totalScore >= 75
-                      ? "bg-lime-400 text-black"
-                      : feedback.totalScore >= 60
-                      ? "bg-yellow-300 text-black"
-                      : feedback.totalScore >= 40
-                      ? "bg-orange-400 text-black"
-                      : "bg-red-500 text-white"
-                  }
-                  `}
-                >
-                  {feedback.totalScore >= 90
-                    ? "Excellent"
-                    : feedback.totalScore >= 75
-                    ? "Very Good"
-                    : feedback.totalScore >= 60
-                    ? "Good"
-                    : feedback.totalScore >= 40
-                    ? "Weak"
-                    : "Very Weak"}
+      <div className="flex flex-row items-center gap-6 mb-6">
+        <Image
+          src={interview.coverImage || getRandomInterviewCover()}
+          alt="Interview Cover"
+          width={80}
+          height={80}
+          className="rounded-full object-cover size-[80px] sm:size-[90px]"
+        />
+        <div className="flex flex-col justify-center">
+          <h1 className="text-4xl font-semibold mb-2">
+            Feedback on the Interview - <span className="capitalize">{interview.role}</span> Interview
+          </h1>
+          <div className="flex flex-row gap-5">
+            {/* Overall Impression */}
+            <div className="flex flex-row gap-2 items-center">
+              <Image src="/star.svg" width={22} height={22} alt="star" />
+              <p>
+                Overall Impression:{" "}
+                <span className="text-primary-200 font-bold">
+                  {feedback?.totalScore}
                 </span>
-              )}
-            </p>
-          </div>
-
-          {/* Date */}
-          <div className="flex flex-row gap-2">
-            <Image src="/calendar.svg" width={22} height={22} alt="calendar" />
-            <p>
-              {feedback?.createdAt
-                ? dayjs(feedback.createdAt).format("MMM D, YYYY h:mm A")
-                : "N/A"}
-            </p>
+                /100
+                {feedback?.totalScore !== undefined && (
+                  <span
+                    className={`
+                      ml-3 px-2 py-1 rounded text-xs font-semibold
+                      ${
+                      feedback.totalScore >= 90
+                        ? "bg-green-500 text-white"
+                        : feedback.totalScore >= 75
+                        ? "bg-lime-400 text-black"
+                        : feedback.totalScore >= 60
+                        ? "bg-yellow-300 text-black"
+                        : feedback.totalScore >= 40
+                        ? "bg-orange-400 text-black"
+                        : "bg-red-500 text-white"
+                    }
+                    `}
+                  >
+                    {feedback.totalScore >= 90
+                      ? "Excellent"
+                      : feedback.totalScore >= 75
+                      ? "Very Good"
+                      : feedback.totalScore >= 60
+                      ? "Good"
+                      : feedback.totalScore >= 40
+                      ? "Weak"
+                      : "Very Weak"}
+                  </span>
+                )}
+              </p>
+            </div>
+            {/* Date */}
+            <div className="flex flex-row gap-2 items-center">
+              <Image src="/calendar.svg" width={22} height={22} alt="calendar" />
+              <p>
+                {feedback?.createdAt
+                  ? dayjs(feedback.createdAt).format("MMM D, YYYY h:mm A")
+                  : "N/A"}
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -97,6 +103,7 @@ const Page = async ({ params: RouteParams }: RouteParams) => {
 
       <div className="flex flex-col gap-3">
         <h3>Strengths</h3>
+        {feedback?.strengths?.length === 0 && <p>No strengths identified.</p>}
         <ul>
           {feedback?.strengths?.map((strength, index) => <li key={index}>{strength}</li>)}
         </ul>

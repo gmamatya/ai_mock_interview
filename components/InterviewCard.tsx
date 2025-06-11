@@ -7,7 +7,7 @@ import React from "react"
 import DisplayTechIcons from "./DisplayTechIcons"
 import { Button } from "./ui/button"
 
-const InterviewCard = async ({ id, userId, role, type, techstack, createdAt }: InterviewCardProps) => {
+const InterviewCard = async ({ id, userId, role, type, techstack, createdAt, coverImage }: InterviewCardProps) => {
   const feedback = await getFeedbackByInterviewId({ userId: userId || "", interviewId: id || "" })
 
   const normalizedType = /mix/gi.test(type) ? "Mixed" : type
@@ -20,7 +20,7 @@ const InterviewCard = async ({ id, userId, role, type, techstack, createdAt }: I
           <p className="badge-text">{normalizedType}</p>
         </div>
         <Image
-          src={getRandomInterviewCover()}
+          src={coverImage || getRandomInterviewCover()}
           alt="Interview Cover"
           width={80}
           height={80}

@@ -20,7 +20,7 @@ const Page = async ({ params }: RouteParams) => {
         <div className="flex flex-row gap-4 items-center max-sm:flex-col">
           <div className="flex flex-row gap-4 items-center">
             <Image
-              src={getRandomInterviewCover()}
+              src={interview.coverImage || getRandomInterviewCover()}
               alt="Interview Cover"
               width={40}
               height={40}

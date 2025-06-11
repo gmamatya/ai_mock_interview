@@ -1,6 +1,6 @@
 import React from "react"
 import { Control, Controller, FieldValues, Path } from "react-hook-form"
-import { FormControl, FormDescription, FormItem, FormLabel, FormMessage } from "./ui/form"
+import { FormControl, FormItem, FormLabel, FormMessage } from "./ui/form"
 import { Input } from "./ui/input"
 
 interface FormFieldProps<T extends FieldValues> {
@@ -19,7 +19,6 @@ const FormField = ({ control, name, label, placeholder, type = "text" }: FormFie
       <FormItem>
         <FormLabel className="label">{label}</FormLabel>
         <FormControl>
-          {/* has to be current-password when sign in, fix later */}
           {type === "password"
             ? (
               <Input

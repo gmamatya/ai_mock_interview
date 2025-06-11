@@ -25,7 +25,6 @@ const authFormSchema = (type: FormType) => {
 
 const AuthForm = ({ type }: { type: FormType }) => {
   const router = useRouter()
-  // 1. Define your form.
   const formSchema = authFormSchema(type)
   const isSignIn = type === "sign-in"
 
@@ -38,9 +37,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
     },
   })
 
-  // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
     try {
       if (type === "sign-in") {
         const { email, password } = values
@@ -73,7 +70,6 @@ const AuthForm = ({ type }: { type: FormType }) => {
         router.push("/sign-in")
       }
     } catch (error: any) {
-      // console.log(error)
       if (error.code === "auth/invalid-credential") {
         toast.error("Incorrect email or password. Please try again.")
         return
@@ -87,7 +83,6 @@ const AuthForm = ({ type }: { type: FormType }) => {
   }
 
   return (
-    // <div className="min-h-screen flex items-center justify-center">
     <div className="card-border lg:min-w-[566px]">
       <div className="flex flex-col gap-6 card py-14 px-10">
         <div className="flex flex-row gap-2 justify-center">

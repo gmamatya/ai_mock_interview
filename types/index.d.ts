@@ -22,6 +22,7 @@ interface Interview {
   createdAt: string
   userId: string
   type: string
+  coverImage: string
   finalized: boolean
 }
 
@@ -44,6 +45,7 @@ interface InterviewCardProps {
   role: string
   type: string
   techstack: string[]
+  coverImage?: string
   createdAt?: string
 }
 
