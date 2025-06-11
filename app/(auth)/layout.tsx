@@ -19,7 +19,7 @@ const AuthLayout = async ({ children }: { children: ReactNode }) => {
         className="absolute inset-0 w-full h-full z-0"
       />
       <div className="flex-1 auth-layout z-10">{children}</div>
-      <footer>
+      <footer className="z-10">
         <Footer />
       </footer>
     </div>

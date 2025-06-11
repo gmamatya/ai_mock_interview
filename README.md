@@ -2,7 +2,9 @@
 
 ## About the Project
 
-A **Next.js**-powered AI mock-interview platform that combines rapid front-end development with intelligent, AI-driven back-ends:
+A **Next.js**-powered mock interview platform offering real-time AI interviews, personalized feedback, and dynamically curated questions based on your choices. Ace your next interview!
+
+#### The project uses the following technologies:
 
 - ![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat&logo=nextdotjs&logoColor=white) React framework with built-in SSR, static-export, file-based routing, and image optimization.  
 - ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white) Utility-first CSS for rapid UI prototyping without leaving your markup.  
