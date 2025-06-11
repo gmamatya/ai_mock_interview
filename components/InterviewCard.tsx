@@ -1,3 +1,4 @@
+import { getFeedbackByInterviewId } from "@/lib/actions/general.action"
 import { getRandomInterviewCover } from "@/lib/utils"
 import dayjs from "dayjs"
 import Image from "next/image"
@@ -6,8 +7,9 @@ import React from "react"
 import DisplayTechIcons from "./DisplayTechIcons"
 import { Button } from "./ui/button"
 
-const InterviewCard = ({ id, userId, role, type, techstack, createdAt }: InterviewCardProps) => {
-  const feedback = null as feedback | null
+const InterviewCard = async ({ id, userId, role, type, techstack, createdAt }: InterviewCardProps) => {
+  const feedback = await getFeedbackByInterviewId({ userId: userId || "", interviewId: id || "" })
+
   const normalizedType = /mix/gi.test(type) ? "Mixed" : type
   const formattedDate = dayjs(feedback?.createdAt || createdAt || Date.now()).format("MMM D, YYYY")
 
@@ -30,7 +32,7 @@ const InterviewCard = ({ id, userId, role, type, techstack, createdAt }: Intervi
             <Image src="/calendar.svg" alt="Calendar" width={22} height={22} className="size-4" />
             <p className="text-sm">{formattedDate}</p>
             <div className="flex flex-row gap-2 items-center">
-              <Image src="/star.svg" alt="Star" width={22} height={22} />
+              <Image src="/star.svg" alt="Star" width={18} height={18} />
               <p>{feedback?.totalScore || "--"}/100</p>
             </div>
           </div>
@@ -40,7 +42,7 @@ const InterviewCard = ({ id, userId, role, type, techstack, createdAt }: Intervi
         </p>
         <div className="flex flex-row justify-between">
           <DisplayTechIcons techStack={techstack} />
-          <Link href={feedback ? `/feedback/${id}/feedback` : `/interview/${id}`}>
+          <Link href={feedback ? `/interview/${id}/feedback` : `/interview/${id}`}>
             <Button className="btn-primary">
               {feedback ? "View Feedback" : "Take Interview"}
             </Button>
