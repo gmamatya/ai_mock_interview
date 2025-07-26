@@ -16,6 +16,7 @@
     "@typescript-eslint/eslint-plugin": "^8.27.0",
     "@typescript-eslint/parser": "^8.27.0",
     "@vapi-ai/web": "^2.3.5",
+    "@vercel/analytics": "^1.5.0",
     "ai": "^4.3.16",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
