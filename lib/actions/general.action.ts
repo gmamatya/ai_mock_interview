@@ -169,6 +169,9 @@ export async function getFeedbackByInterviewId(params: GetFeedbackByInterviewIdP
       "userId",
       "==",
       userId,
+    ).orderBy(
+      "createdAt",
+      "desc",
     ).limit(1)
       .get()
     if (feedback.empty) return null
