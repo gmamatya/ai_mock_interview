@@ -106,17 +106,3 @@ Interview Generation and Feedback
 3. Edit `app/page.tsx`—changes auto-reload in the browser.
 
 This setup also uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to optimize loading of the **Geist** font from Vercel.
-
-## Learn More
-
-- **Next.js Documentation**: https://nextjs.org/docs  
-- **Interactive Tutorial**: https://nextjs.org/learn  
-- **GitHub Repo**: https://github.com/vercel/next.js
-
-## Deploy on Vercel
-
-Deploy with zero-config on Vercel:
-
-[![Deploy on Vercel](https://img.shields.io/badge/Deploy%20on-Vercel-000000?style=flat&logo=vercel&logoColor=white)](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
-
-See [Next.js deployment docs](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
