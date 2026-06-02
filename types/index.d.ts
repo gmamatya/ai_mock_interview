@@ -85,6 +85,13 @@ interface SignUpParams {
   password: string
 }
 
+interface SignInWithGoogleParams {
+  uid: string
+  name: string
+  email: string
+  idToken: string
+}
+
 type FormType = "sign-in" | "sign-up"
 
 interface InterviewFormProps {

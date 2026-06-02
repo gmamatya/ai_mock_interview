@@ -2,13 +2,14 @@
 import { auth } from "@/app/firebase/client"
 import { Button } from "@/components/ui/button"
 import { Form } from "@/components/ui/form"
-import { signIn, signUp } from "@/lib/actions/auth.action"
+import { signIn, signInWithGoogle, signUp } from "@/lib/actions/auth.action"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
+import { GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import React from "react"
+import React, { useState } from "react"
+import { FcGoogle } from "react-icons/fc"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { z } from "zod"
@@ -27,6 +28,34 @@ const AuthForm = ({ type }: { type: FormType }) => {
   const router = useRouter()
   const formSchema = authFormSchema(type)
   const isSignIn = type === "sign-in"
+
+  const [googleLoading, setGoogleLoading] = useState(false)
+
+  async function handleGoogleSignIn() {
+    setGoogleLoading(true)
+    try {
+      const provider = new GoogleAuthProvider()
+      const credential = await signInWithPopup(auth, provider)
+      const idToken = await credential.user.getIdToken()
+      const result = await signInWithGoogle({
+        uid: credential.user.uid,
+        name: credential.user.displayName ?? "User",
+        email: credential.user.email ?? "",
+        idToken,
+      })
+      if (!result?.success) {
+        toast.error(result?.message ?? "Failed to sign in with Google.")
+        return
+      }
+      toast.success("Signed in successfully")
+      router.push("/")
+    } catch (error: any) {
+      if (error.code === "auth/popup-closed-by-user") return
+      toast.error("Failed to sign in with Google.")
+    } finally {
+      setGoogleLoading(false)
+    }
+  }
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -110,6 +139,21 @@ const AuthForm = ({ type }: { type: FormType }) => {
             <Button className="btn" type="submit">{isSignIn ? "Sign In" : "Create an Account"}</Button>
           </form>
         </Form>
+        <div className="flex items-center gap-3">
+          <div className="flex-1 h-px bg-white/10" />
+          <span className="text-sm text-white/40">or</span>
+          <div className="flex-1 h-px bg-white/10" />
+        </div>
+        <Button
+          type="button"
+          variant="outline"
+          className="w-full flex items-center gap-3 bg-transparent border-white/20 hover:bg-white/5 text-white"
+          onClick={handleGoogleSignIn}
+          disabled={googleLoading}
+        >
+          <FcGoogle className="size-5 shrink-0" />
+          {googleLoading ? "Signing in..." : "Continue with Google"}
+        </Button>
         <p className="text-center">
           {isSignIn ? "Don't have an account? " : "Already have an account? "}
           <Link className="font-bold text-user-primary ml-1" href={isSignIn ? "/sign-up" : "/sign-in"}>

@@ -84,6 +84,22 @@ export async function isAuthenticated() {
   return !!user // Return true if user exists, false otherwise
 }
 
+export async function signInWithGoogle(params: SignInWithGoogleParams) {
+  const { uid, name, email, idToken } = params
+  try {
+    const userRef = db.collection("users").doc(uid)
+    const userRecord = await userRef.get()
+    if (!userRecord.exists) {
+      await userRef.set({ name, email })
+    }
+    await setSessionCookie(idToken)
+    return { success: true }
+  } catch (error: any) {
+    console.error("Error signing in with Google:", error)
+    return { success: false, message: "Failed to sign in with Google." }
+  }
+}
+
 export async function signOut() {
   const cookieStore = await cookies()
 
