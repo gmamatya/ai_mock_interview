@@ -147,7 +147,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
         <Button
           type="button"
           variant="outline"
-          className="w-full flex items-center gap-3 bg-transparent border-white/20 hover:bg-white/5 text-white"
+          className="w-full flex items-center gap-3 bg-transparent border-white/20 hover:bg-white/5 text-white cursor-pointer"
           onClick={handleGoogleSignIn}
           disabled={googleLoading}
         >
